@@ -100,7 +100,7 @@ download_wordpress:
 extract_wordpress:
   cmd.run:
     - name: "mkdir -p /var/www/wordpress2024 && tar -xzf /tmp/wordpress.tar.gz -C /var/www/wordpress2024"
-    # - creates: "/var/www/wordpress2024"
+    - creates: "/var/www/wordpress2024"
 
 symlink_wordpress_to_nginx_html_folder:
   file.symlink:
