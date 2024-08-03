@@ -21,10 +21,10 @@
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 /* If you modify this, also modify it from pillars. */
-define( 'DB_NAME', "kartaca");
+define( 'DB_NAME', "doot");
 
 /** Database username */
-define( 'DB_USER', "kartacawordpress" );
+define( 'DB_USER', "dootwordpress" );
 
 /** Database password */
 define( 'DB_PASSWORD', "YHP71Bnk0vHQpzwkNCVnkw2FKITviePNcr5vQjZhIRc" );

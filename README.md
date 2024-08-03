@@ -1,14 +1,16 @@
-### Kartaca SysAdmin Internship Case Study
+### SysAdmin Internship Case Study
+this was a case study for a sysadmin internship position, I replaced the name of the company to "doot" in all appearances before making it public. didnt delete the commit history, so if you are curious, go ahead.
+
 The easiest way to run is carrying /srv/ folder entirely to the master machine.
 ```bash
 sudo salt '*' test.ping
 ```
 For WordPress config, you might need to change the MySQL host. Please check out the `wp-config.php` file.
 ```bash
-sudo salt 'ubuntu22' kartaca-mysql.sls
+sudo salt 'ubuntu22' mysql.sls
 ```
 ```bash
-sudo salt 'centos9' kartaca-wordpress.sls
+sudo salt 'centos9' wordpress.sls
 ```
 After all, go to CentOS minion's IP address `/wp-admin` to see the results. 
 
@@ -17,7 +19,7 @@ After all, go to CentOS minion's IP address `/wp-admin` to see the results.
 - Parts of the wordpress may not work. If you test the MySQL connection from CentOS machine by 
   ```bash
   yum install mysql
-  mysql -ppassword -hhost -uuser kartaca
+  mysql -ppassword -hhost -uuser doot
   ``` 
   you will see that there is no problem in connection for MySQL between the Ubuntu <-> CentOS, but still, some parts of Wordpress may not work and `nginx.conf` may be incomplete.
 - If you want to use Vagrant with my Vagrantfile and the same IP ranges:

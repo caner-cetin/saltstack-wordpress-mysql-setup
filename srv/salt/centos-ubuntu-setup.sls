@@ -1,36 +1,36 @@
 ##########################################################################################
 # User ve group ID’si 2024, home dizini /home/krt,                                       #
-# default shell’i /bin/bash,  kartaca adında bir kullanıcı oluşturun.                    #
-# parolası kartaca2024 olan kartaca adında bir kullanıcı oluşturun.                      #
+# default shell’i /bin/bash,  doot adında bir kullanıcı oluşturun.                    #
+# parolası doot2024 olan doot adında bir kullanıcı oluşturun.                      #
 # (Kullanıcı parola bilgisini state file üzerinde değil pillar data üzerinde tutun.)     #
 ##########################################################################################
 create_group_2024:
 # ensure that the group is present, does nothing if the group already exists
   group.present:
-    - name: '{{ pillar['kartaca']['username'] }}-2024-group'
+    - name: '{{ pillar['doot']['username'] }}-2024-group'
     - gid: 2024
         
-create_kartaca_user:
+create_doot_user:
   # ensure that the user is present, does nothing if the user already exists
   user.present:
-    - name: '{{ pillar['kartaca']['username'] }}'
-    - password: '{{ pillar['kartaca']['password'] }}'
+    - name: '{{ pillar['doot']['username'] }}'
+    - password: '{{ pillar['doot']['password'] }}'
     - uid: 2024
     - gid: 2024
     - home: /home/krt
     - shell: /bin/bash
 ##########################################################################################
-# Kartaca kullanıcısına sudo yetkisi verin ve bu kullanıcı Ubuntu üzerinde sudo apt      #
+# doot kullanıcısına sudo yetkisi verin ve bu kullanıcı Ubuntu üzerinde sudo apt      #
 # komutunu, Centos üzerinde sudo yum komutunu parola yazmadan çalıştırabilsin.           #
 ##########################################################################################
 {% if grains['os_family'] == 'RedHat' %}
-add_kartaca_user_to_sudoers_redhat:
+add_doot_user_to_sudoers_redhat:
   cmd.run:
-    - name: "usermod -aG wheel {{ pillar['kartaca']['username'] }}"
+    - name: "usermod -aG wheel {{ pillar['doot']['username'] }}"
 {% elif grains['os_family'] == 'Debian' or grains['os_family'] == 'Ubuntu' %}
-add_kartaca_user_to_sudoers_debian:
+add_doot_user_to_sudoers_debian:
   cmd.run:
-    - name: "usermod -aG sudo {{ pillar['kartaca']['username'] }}"
+    - name: "usermod -aG sudo {{ pillar['doot']['username'] }}"
 {%endif%}
 
 ##########################################################################################
@@ -105,12 +105,12 @@ add_hashicorp_repo_to_system_ubuntu:
 {% endif %}
 ##########################################################################################
 # 192.168.168.128/28 IP bloğundaki her IP adresi için /etc/hosts dosyasına               #
-# kartaca.local adresini çözecek şekilde host kaydı ekleyin.                             # 
+# doot.local adresini çözecek şekilde host kaydı ekleyin.                             # 
 # Bu değişikliği Salt state dosyası içinde for döngüsü ile yapın.                        #
 ##########################################################################################
 {% for i in range(1, 16) %}
 add_host_{{ i }}:
   file.append:
     - name: /etc/hosts
-    - text: "192.168.168.{{ 128 + i }}/28 kartaca.local"
+    - text: "192.168.168.{{ 128 + i }}/28 doot.local"
 {% endfor %}
